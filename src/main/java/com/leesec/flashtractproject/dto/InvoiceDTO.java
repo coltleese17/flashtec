@@ -1,13 +1,13 @@
 package com.leesec.flashtractproject.dto;
 
-import com.leesec.flashtractproject.entity.contract.Contract;
 import com.leesec.flashtractproject.entity.invoice.InvoiceStatus;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
+import lombok.Data;
 import java.time.LocalDateTime;
 
+@Data
 public class InvoiceDTO {
+
+    private Long id;
 
     private Long contractId;
 
@@ -25,7 +25,5 @@ public class InvoiceDTO {
 
     private String description;
 
-    @Column
-    @Enumerated(EnumType.STRING)
     private InvoiceStatus status;
 }

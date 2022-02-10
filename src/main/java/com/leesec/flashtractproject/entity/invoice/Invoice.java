@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -40,9 +42,11 @@ public class Invoice {
     private int hours;
 
     @Column
+    @CreationTimestamp
     private LocalDateTime createdDate;
 
     @Column
+    @UpdateTimestamp
     private LocalDateTime updatedDate;
 
     @Column
@@ -54,20 +58,12 @@ public class Invoice {
 
     public static Invoice mapInvoiceDTOtoInvoice(InvoiceDTO invoiceDTO) {
 
-            Invoice invoice = Invoice.buildNewInvoice();
-            BeanUtils.copyProperties(invoiceDTO, invoice);
+        Invoice invoice = new Invoice();
+        BeanUtils.copyProperties(invoiceDTO, invoice,"createdDate", "updatedDate");
 
-            //For demo purposes, auto-approve the invoice
-            invoice.setStatus(InvoiceStatus.APPROVED);
+        //For demo purposes, auto-approve the invoice
+        invoice.setStatus(InvoiceStatus.APPROVED);
 
-            return invoice;
-    }
-
-    public static Invoice buildNewInvoice() {
-        LocalDateTime now = LocalDateTime.now();
-        return Invoice.builder()
-                .createdDate(now)
-                .updatedDate(now)
-                .build();
+        return invoice;
     }
 }

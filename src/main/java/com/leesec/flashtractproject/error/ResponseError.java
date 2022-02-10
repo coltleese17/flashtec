@@ -1,10 +1,13 @@
 package com.leesec.flashtractproject.error;
+
 import lombok.Data;
 
+@Data
 public class ResponseError {
 
-    public String message;
+    private String message;
 
-    public ResponseError(String s) {
+    public ResponseError(String message) {
+        this.message = message;
     }
 }

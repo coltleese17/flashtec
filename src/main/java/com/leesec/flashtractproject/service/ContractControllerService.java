@@ -6,8 +6,16 @@ import com.leesec.flashtractproject.exception.ContractNotFoundException;
 import com.leesec.flashtractproject.exception.DatabaseSaveFailedException;
 import com.leesec.flashtractproject.repository.ContractRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
+/***
+ * Due to time constraints I have not implemented validation nor user management,
+ * though I would be happy to talk through my approaches for how I would implement
+ * them in something like Spring Security or Shiro.
+ *
+ * I've also only added a few tests but would with time would add more coverage with
+ * unit and integration tests.
+ */
 
 //@Log4j
 @Service
@@ -34,10 +42,8 @@ public class ContractControllerService {
     }
 
     public Contract getContractByID(Long contractId) {
-        Optional<Contract> contract = Optional.empty();
-        contract = contractRepository.findById(contractId);
+        Optional<Contract> contract = contractRepository.findById(contractId);
 
-        //!isContractLinkedToUser(contract, user)
         if (contract.isEmpty()) {
             throw new ContractNotFoundException();
         }

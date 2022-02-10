@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "3c93864c-bb79-4e9b-a77d-9567745bb92e",
+		"name": "Flashtec-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Invoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"description\": \"Install Drip Edge\",\n      \"cost\": 3, \n      \"hours\":2,\n      \"contractId\":1\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/invoice",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"invoice"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Contract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"description\": \"Program contracting app\",\n        \"clientId\": 1,\n        \"vendorId\": 2,\n        \"totalCost\": 1000.00,\n        \"remainingCost\":1000.00,\n        \"startDate\": \"2022-02-09T16:11:22.849764\",\n        \"endDate\": \"2022-02-09T16:11:22.849764\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contract",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contract"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contract By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/contract/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contract",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Invoice By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/invoice/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"invoice",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Invoices By Contract ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/contract/1/invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contract",
+						"1",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

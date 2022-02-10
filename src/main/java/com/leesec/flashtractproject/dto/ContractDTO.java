@@ -1,9 +1,6 @@
 package com.leesec.flashtractproject.dto;
 
-
 import lombok.Data;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -29,10 +26,5 @@ public class ContractDTO {
 
     private LocalDateTime createdDate;
 
-    private LocalDateTime updated_date;
-
-    public enum UserRole {
-        CLIENT,
-        VENDOR,
-    }
+    private LocalDateTime updatedDate;
 }

@@ -4,6 +4,5 @@ public enum InvoiceStatus {
     SUBMITTED,
     IN_PROGRESS,
     APPROVED,
-    VOID,
-    ;
+    VOID;
 }

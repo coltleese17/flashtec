@@ -1,14 +1,15 @@
 package com.leesec.flashtractproject.entity.contract;
 
 import com.leesec.flashtractproject.dto.ContractDTO;
+import com.leesec.flashtractproject.entity.invoice.Invoice;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -44,46 +45,26 @@ public class Contract {
         private double remainingCost;
 
         @Column
+        @CreationTimestamp
         private LocalDateTime createdDate;
 
         @Column
+        @UpdateTimestamp
         private LocalDateTime updatedDate;
-
-//        @Column
-//        private LocalDateTime deadline;
 
         @Enumerated(EnumType.STRING)
         @Column
         private ContractStatus status;
 
-//        @OneToMany(mappedBy = "contractId")
-//        private List<Invoice> invoices;
-
-        //        @ManyToOne
-//        @JoinColumn(name = "contractorUserId", referencedColumnName = "id", insertable = false, updatable = false)
-//        private User contractorUser;
-
         public static Contract mapContractDTOtoContract(ContractDTO contractDTO) {
-                Contract contract = Contract.buildNewContract();
-                BeanUtils.copyProperties(contractDTO, contract);
+                Contract contract = new Contract();
+                BeanUtils.copyProperties(contractDTO, contract,"createdDate", "updatedDate");
 
                 if (contract.status == null) {
-                        //automatically set to approved for demo purposes
+                        //Automatically set to approved for demo purposes
                         contract.setStatus(ContractStatus.APPROVED);
                 }
 
                 return contract;
         }
-
-        public static Contract buildNewContract() {
-                LocalDateTime now = LocalDateTime.now();
-                return Contract.builder()
-                        .createdDate(now)
-                        .updatedDate(now)
-                        .build();
-        }
-
-
-
-
 }
